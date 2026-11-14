@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Children's Day Universe • Samriti & Snaya 🦚✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-void: #050510;
+            --card-glass: rgba(255, 255, 255, 0.045);
+            --card-border: rgba(255, 255, 255, 0.14);
+            --gold: #ffd166;
+            --gold-glow: rgba(255, 209, 102, 0.45);
+            --peacock: #00f5d4;
+            --royal-purple: #9b5de5;
+            --rose: #f15bb5;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8d1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Animated Cosmic Background */
+        .cosmic-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: 0.45;
+            animation: floatNebula 16s infinite alternate ease-in-out;
+        }
+
+        .nebula-1 { width: 450px; height: 450px; background: #3a0ca3; top: -120px; left: -100px; }
+        .nebula-2 { width: 400px; height: 400px; background: #0077b6; bottom: -100px; right: -80px; animation-delay: -5s; }
+        .nebula-3 { width: 320px; height: 320px; background: #7209b7; top: 40%; left: 45%; opacity: 0.25; animation-delay: -9s; }
+
+        @keyframes floatNebula {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, -40px) scale(1.18); }
+        }
+
+        /* Rotating Sacred Geometry / Mandala Ring in Background */
+        .mandala-ring {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 680px;
+            height: 680px;
+            transform: translate(-50%, -50%);
+            border: 1px dashed rgba(255, 209, 102, 0.12);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+            animation: spinSlow 60s linear infinite;
+        }
+
+        .mandala-ring::before {
+            content: '';
+            position: absolute;
+            inset: 45px;
+            border: 1px solid rgba(0, 245, 212, 0.08);
+            border-radius: 50%;
+        }
+
+        @keyframes spinSlow {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Starfield */
+        #starfield {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Entry Gate Overlay */
+        #entry-gate {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, #110b2e 0%, #050510 100%);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 24px;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        #entry-gate.unlocked {
+            opacity: 0;
+            transform: scale(1.08);
+            pointer-events: none;
+        }
+
+        .gate-emblem {
+            font-size: 4.2rem;
+            margin-bottom: 16px;
+            filter: drop-shadow(0 0 25px rgba(0, 245, 212, 0.6));
+            animation: hoverFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes hoverFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        #entry-gate h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            color: var(--gold);
+            text-shadow: 0 0 30px rgba(255, 209, 102, 0.4);
+            margin-bottom: 12px;
+        }
+
+        #entry-gate p {
+            color: var(--text-secondary);
+            max-width: 460px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #ffd166, #f77f00);
+            color: #050510;
+            border: none;
+            padding: 16px 38px;
+            border-radius: 99px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 35px var(--gold-glow);
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 15px 45px rgba(255, 209, 102, 0.7);
+        }
+
+        /* Top Navigation Bar (3 Pages Switcher) */
+        .top-nav {
+            position: sticky;
+            top: 16px;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            padding: 0 16px;
+        }
+
+        .nav-pills {
+            background: rgba(12, 12, 28, 0.75);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(20px);
+            padding: 6px;
+            border-radius: 99px;
+            display: flex;
+            gap: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            border-radius: 99px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn:hover {
+            color: #fff;
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, rgba(255, 209, 102, 0.22), rgba(0, 245, 212, 0.18));
+            color: var(--gold);
+            border: 1px solid rgba(255, 209, 102, 0.4);
+            box-shadow: 0 0 20px rgba(255, 209, 102, 0.15);
+        }
+
+        /* Main Page Container */
+        .app-container {
+            max-width: 980px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 36px 20px 100px;
+            position: relative;
+            z-index: 10;
+            flex: 1;
+        }
+
+        /* Page Sections & Smooth Transitions */
+        .page-section {
+            display: none;
+            animation: pageFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(22px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--peacock);
+            background: rgba(0, 245, 212, 0.1);
+            border: 1px solid rgba(0, 245, 212, 0.25);
+            padding: 6px 16px;
+            border-radius: 99px;
+            margin-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.1rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 10px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ffd166, #00f5d4, #f15bb5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--card-glass);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 209, 102, 0.45);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Page 1: Dual Student Cards */
+        .duo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .profile-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .class-tag {
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 99px;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-samriti { background: rgba(155, 93, 229, 0.2); color: #d8b4fe; border: 1px solid rgba(155, 93, 229, 0.4); }
+        .tag-snaya { background: rgba(0, 245, 212, 0.16); color: #5eead4; border: 1px solid rgba(0, 245, 212, 0.35); }
+
+        .profile-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .profile-card p {
+            color: #d4dcf0;
+            line-height: 1.7;
+            font-size: 0.98rem;
+            margin-bottom: 20px;
+        }
+
+        .stat-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .stat-pill {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 7px 14px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        /* Page 2: Spiritual & Kundli Interactive Hub */
+        .spiritual-hero {
+            text-align: center;
+            background: linear-gradient(145deg, rgba(255, 209, 102, 0.08), rgba(155, 93, 229, 0.12));
+            border: 1px solid rgba(255, 209, 102, 0.3);
+            margin-bottom: 26px;
+        }
+
+        .spiritual-hero h3 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.75rem;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .shloka-box {
+            display: inline-block;
+            background: rgba(0, 245, 212, 0.1);
+            border: 1px solid rgba(0, 245, 212, 0.3);
+            color: var(--peacock);
+            padding: 10px 22px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 16px;
+        }
+
+        .spiritual-hero p {
+            color: #e2e8f0;
+            line-height: 1.75;
+            max-width: 720px;
+            margin: 0 auto 24px;
+        }
+
+        .kundli-box {
+            background: rgba(5, 5, 16, 0.55);
+            border: 1px solid rgba(255, 209, 102, 0.25);
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .kundli-result {
+            margin-top: 18px;
+            padding: 16px;
+            border-radius: 14px;
+            background: rgba(255, 209, 102, 0.1);
+            color: #fff;
+            font-size: 0.96rem;
+            line-height: 1.6;
+            display: none;
+            animation: pageFadeIn 0.4s ease;
+        }
+
+        /* Page 3: Mystery Chests & Action Buttons */
+        .chest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+
+        .chest-card {
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            border: 1px dashed rgba(255, 209, 102, 0.4);
+            position: relative;
+        }
+
+        .chest-card.unlocked {
+            border-style: solid;
+            border-color: var(--peacock);
+            background: linear-gradient(145deg, rgba(0, 245, 212, 0.12), rgba(255, 209, 102, 0.08));
+        }
+
+        .chest-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .chest-card:hover .chest-emoji {
+            transform: scale(1.15) rotate(6deg);
+        }
+
+        .chest-text {
+            font-size: 0.92rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: #f8fafc;
+        }
+
+        .action-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: #fff;
+            padding: 14px 26px;
+            border-radius: 99px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(12px);
+            transition: all 0.25s ease;
+        }
+
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.16);
+            border-color: var(--peacock);
+            transform: translateY(-2px);
+        }
+
+        /* Page Bottom Navigation Controls */
+        .page-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+            gap: 12px;
+        }
+
+        .btn-nav-step {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+            border: 1px solid var(--card-border);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 99px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav-step:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-nav-next {
+            background: linear-gradient(135deg, var(--gold), #ff9f1c);
+            color: #050510;
+            border: none;
+            box-shadow: 0 8px 25px rgba(255, 209, 102, 0.3);
+        }
+
+        .btn-nav-next:hover {
+            color: #050510;
+            box-shadow: 0 12px 35px rgba(255, 209, 102, 0.55);
+        }
+
+        /* Floating Music Player */
+        .music-dock {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 500;
+            background: rgba(10, 10, 26, 0.85);
+            border: 1px solid rgba(255, 209, 102, 0.35);
+            backdrop-filter: blur(16px);
+            padding: 10px 18px;
+            border-radius: 99px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 14px;
+        }
+
+        .bars span {
+            width: 3px;
+            height: 4px;
+            background: var(--peacock);
+            border-radius: 2px;
+        }
+
+        .bars.active span:nth-child(1) { animation: sound 0.5s infinite alternate; }
+        .bars.active span:nth-child(2) { animation: sound 0.35s infinite alternate 0.15s; }
+        .bars.active span:nth-child(3) { animation: sound 0.6s infinite alternate 0.05s; }
+
+        @keyframes sound {
+            from { height: 4px; }
+            to { height: 15px; }
+        }
+
+        /* Toast Notification */
+        #toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(15, 15, 35, 0.95);
+            border: 1px solid var(--gold);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 99px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s ease;
+            z-index: 1500;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1400;
+        }
+
+        @media (max-width: 600px) {
+            .nav-btn { padding: 8px 14px; font-size: 0.8rem; }
+            .glass-card { padding: 22px; }
+            .page-controls { flex-direction: column; }
+            .btn-nav-step { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Audio (Keep song.mp3 in same folder) -->
+    <audio id="bg-music" loop>
+        <source src="D:\std\Chhote Chhote Tamashe.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Canvas & Ambient Layers -->
+    <canvas id="confetti-canvas"></canvas>
+    <div id="starfield"></div>
+    <div class="cosmic-canvas">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+    </div>
+    <div class="mandala-ring"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast"></div>
+
+    <!-- Entry Gate -->
+    <div id="entry-gate">
+        <div class="gate-emblem">🦚🌌</div>
+        <h1>Happy Children's Day!</h1>
+        <p>MAY BOTH GET SUCCEED ASAP.</p>
+        <button class="btn-gold" onclick="unlockUniverse()">
+            <span>Enter The Surprise</span>
+            <span>✨</span>
+        </button>
+    </div>
+
+    <!-- Top 3-Page Navigation Pills -->
+    <nav class="top-nav">
+        <div class="nav-pills">
+            <button class="nav-btn active" id="tab-1" onclick="goToPage(1)">01 • The Duo ⚡</button>
+            <button class="nav-btn" id="tab-2" onclick="goToPage(2)">02 • Cosmic & Krsn 🦚</button>
+            <button class="nav-btn" id="tab-3" onclick="goToPage(3)">03 • Mystery Vault 🎁</button>
+        </div>
+    </nav>
+
+    <!-- Main 3-Page Content -->
+    <main class="app-container">
+
+        <!-- ==================== PAGE 1: THE DUO ==================== -->
+        <section class="page-section active" id="page-1">
+            <div class="section-header">
+                <div class="eyebrow">14 November • Special Edition</div>
+                <h2>Happy Children's Day, <span class="gradient-text">Samriti & Snaya!</span></h2>
+                <p>TWO OPPOSITE PERSONALITIES  ✨</p>
+            </div>
+
+            <div class="duo-grid">
+                <!-- Samriti Card -->
+                <div class="glass-card profile-card">
+                    <div class="profile-top">
+                        <span class="class-tag tag-samriti"> • THE SMARTWORKER</span>
+                        <span style="font-size: 2rem;">⚡</span>
+                    </div>
+                    <h3>Samriti</h3>
+                    <p>
+                        Thodi si aalsi zaroor ho (no cap 😂), par jab baat kisi concept ko samajhne ki aati hai toh <strong>2 minute mein game crack</strong> kar leti hai ! Kam mehnat mein maximum output  <strong>Smartworker</strong>
+                    </p>
+                    <div class="stat-pills">
+                        <span class="stat-pill">🧠 2-Min Concept Catcher</span>
+                        <span class="stat-pill">✨ Effortless Slay</span>
+                    </div>
+                </div>
+
+                <!-- Snaya Card -->
+                <div class="glass-card profile-card">
+                    <div class="profile-top">
+                        <span class="class-tag tag-snaya"> • DOUBT CRUSHER</span>
+                        <span style="font-size: 2rem;">🎯</span>
+                    </div>
+                    <h3>Snaya</h3>
+                    <p>
+                       curiosity aur dedication next level ! Doubts pooch-pooch kar har topic ko jad se strong karna but badmein bhul jana , baar-baar practice karne aur test dene se nakhre krne  wali aur personal guidance ke saath perfection laane ki consistency sabse aage rakhegi!
+                    </p>
+                    <div class="stat-pills">
+                        <span class="stat-pill">🔥 Zero and infinite-Doubt Mindset</span>
+                        <span class="stat-pill">💫 Unstoppable doubts and curiousity</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-controls" style="justify-content: flex-end;">
+                <button class="btn-nav-step btn-nav-next" onclick="goToPage(2)">
+                    <span>Next: Krishn & Kundli Vibe</span>
+                    <span>→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 2: SPIRITUAL & COSMIC ==================== -->
+        <section class="page-section" id="page-2">
+            <div class="section-header">
+                <div class="eyebrow">Page 02 • Spiritual & Astrology Corner</div>
+                <h2>Shree Krishn & <span class="gradient-text">Cosmic Alignment</span></h2>
+                <p>Har din ke stars aur Shree Krishna ke gyaan se tum dono ki life aur padhai mein hamesha positivity aur clarity bani rahe!</p>
+            </div>
+
+            <div class="glass-card spiritual-hero">
+                <div style="font-size: 3rem; margin-bottom: 10px;">🦚📖🪐</div>
+                <h3>Divine Wisdom & Curiosity</h3>
+                <div class="shloka-box">"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन"</div>
+                <p>
+                    Itni choti umar mein <strong>Shree Krishn</strong> ki leelaon <strong>Kundli </strong> ke mysteries ko samajhne ki jigyasa bohot kam logon mein hoti hai. Kanha ji ka ashirwad hamesha tum dono par bana rahe aur tumhari life ki kundli mein hamesha gyaan, shanti aur success ke best yog bane rahein!
+                </p>
+
+                <!-- Interactive Kundli / Blessing Generator -->
+                <div class="kundli-box">
+                    <h4 style="color: var(--gold); margin-bottom: 8px; font-size: 1.1rem;">🔮 Check Today's Cosmic Graha & Blessing</h4>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px;">Button dabao aur dekho aaj ke stars Samriti & Snaya ke liye kya kehte hain!</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                        <button class="btn-gold" style="padding: 12px 24px; font-size: 0.92rem;" onclick="revealKundli('samriti')">
+                            ✨ Samriti's Cosmic Reading
+                        </button>
+                        <button class="btn-glass" style="padding: 12px 24px; font-size: 0.92rem; border-color: var(--peacock);" onclick="revealKundli('snaya')">
+                            🪐 Snaya's Cosmic Reading
+                        </button>
+                    </div>
+                    <div class="kundli-result" id="kundli-output"></div>
+                </div>
+            </div>
+
+            <div class="page-controls">
+                <button class="btn-nav-step" onclick="goToPage(1)">
+                    <span>← Back: The Duo</span>
+                </button>
+                <button class="btn-nav-step btn-nav-next" onclick="goToPage(3)">
+                    <span>Next: Open Mystery Vault</span>
+                    <span>→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 3: MYSTERY VAULT & CELEBRATION ==================== -->
+        <section class="page-section" id="page-3">
+            <div class="section-header">
+                <div class="eyebrow">Page 03 • Final Surprise</div>
+                <h2>The Secret <span class="gradient-text">Tuition Vault</span> 🎁</h2>
+                <p>Har box par click karke apna title unlock karo, aur neeche wale buttons se celebration shuru karo!</p>
+            </div>
+
+            <div class="chest-grid">
+                <div class="glass-card chest-card" onclick="unlockChest(this, '🏆 <strong>Lazy Genius Title:</strong> Samriti ke naam! 2 minute mein chapter samajh kar chill karne wali.')">
+                    <div class="chest-emoji">🎁</div>
+                    <div class="chest-text">Box #1 • Tap to Unlock</div>
+                </div>
+
+                <div class="glass-card chest-card" onclick="unlockChest(this, '🏆 <strong>Perfectionist Queen Title:</strong> Snaya ke naam! Doubts clear karke har concept ko rock-solid banane ke liye.')">
+                    <div class="chest-emoji">🎁</div>
+                    <div class="chest-text">Box #2 • Tap to Unlock</div>
+                </div>
+
+                <div class="glass-card chest-card" onclick="unlockChest(this, '🦚 <strong>Kanha Ji\'s Blessing:</strong> may both have a good and sharpned life !')">
+                    <div class="chest-emoji">✨</div>
+                    <div class="chest-text">Box #3 • Divine Note</div>
+                </div>
+
+                <div class="glass-card chest-card" onclick="unlockChest(this, '🤝 <strong>Bhaiya\'s Promise:</strong> Chahe jitne doubts hon ya jitni practice chahiye ho, personal guidance hamesha on hai!')">
+                    <div class="chest-emoji">💙</div>
+                    <div class="chest-text">Box #4 • Tutor's Promise</div>
+                </div>
+            </div>
+
+            <!-- Interactive Fun Buttons -->
+            <div class="action-bar">
+                <button class="btn-gold" onclick="triggerParty()">
+                    <span>Shower Confetti & Blessings 🎉</span>
+                </button>
+                <button class="btn-glass" onclick="claimTreat()">
+                    <span>Claim Children's Day Chocolate 🍫</span>
+                </button>
+            </div>
+
+            <div class="glass-card" style="text-align: center; padding: 24px;">
+                <p style="color: var(--text-secondary); font-size: 0.98rem;">
+                    Stay curious, keep asking questions & never lose your spark! ✨<br>
+                    <strong style="color: var(--gold); font-size: 1.05rem;">— With Best Wishes, Your Bhaiya / Tutor</strong>
+                </p>
+            </div>
+
+            <div class="page-controls">
+                <button class="btn-nav-step" onclick="goToPage(2)">
+                    <span>← Back: Cosmic Hub</span>
+                </button>
+                <button class="btn-nav-step btn-nav-next" onclick="goToPage(1)">
+                    <span>Restart Journey ↻</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Music Dock -->
+    <div class="music-dock" onclick="toggleMusic()">
+        <div class="bars" id="music-bars">
+            <span></span><span></span><span></span>
+        </div>
+        <span id="music-status">Play Song</span>
+    </div>
+
+    <script>
+        // 1. Generate Background Stars
+        const starfield = document.getElementById('starfield');
+        for (let i = 0; i < 90; i++) {
+            const s = document.createElement('div');
+            s.style.position = 'absolute';
+            const size = Math.random() * 2.5 + 1;
+            s.style.width = size + 'px';
+            s.style.height = size + 'px';
+            s.style.background = i % 3 === 0 ? '#ffd166' : '#ffffff';
+            s.style.borderRadius = '50%';
+            s.style.top = Math.random() * 100 + '%';
+            s.style.left = Math.random() * 100 + '%';
+            s.style.opacity = Math.random() * 0.7 + 0.2;
+            starfield.appendChild(s);
+        }
+
+        // 2. Entry Gate & Music Logic
+        const bgMusic = document.getElementById('bg-music');
+        const musicBars = document.getElementById('music-bars');
+        const musicStatus = document.getElementById('music-status');
+        let musicPlaying = false;
+
+        function unlockUniverse() {
+            document.getElementById('entry-gate').classList.add('unlocked');
+            startMusic();
+            fireConfetti();
+        }
+
+        function startMusic() {
+            bgMusic.play().then(() => {
+                musicPlaying = true;
+                musicBars.classList.add('active');
+                musicStatus.textContent = 'Vibe On';
+            }).catch(() => {
+                musicPlaying = false;
+                musicStatus.textContent = 'Play Song';
+            });
+        }
+
+        function toggleMusic() {
+            if (musicPlaying) {
+                bgMusic.pause();
+                musicPlaying = false;
+                musicBars.classList.remove('active');
+                musicStatus.textContent = 'Paused';
+            } else {
+                startMusic();
+            }
+        }
+
+        // 3. 3-Page Navigation Switcher
+        function goToPage(pageNum) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById('page-' + pageNum).classList.add('active');
+            document.getElementById('tab-' + pageNum).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 4. Kundli Interactive Reading
+        function revealKundli(student) {
+            const output = document.getElementById('kundli-output');
+            output.style.display = 'block';
+            if (student === 'samriti') {
+                output.innerHTML = `✨ <strong>Samriti's Graha Alignment:</strong> Aaj tumhara Budh (Mercury - intelligence planet) super strong hai! Aalas ko side rakh kar jo bhi topic uthaogi, 2 minute mein master kar logi. Kanha ji ki kripa se sharp memory aur good luck saath hai! 🦚`;
+            } else {
+                output.innerHTML = `🪐 <strong>Snaya's Graha Alignment:</strong> Tumhari kundli mein Guru (Jupiter - wisdom & learning) chamak raha hai! Har doubt poochne ki aadat aur regular practice tumhe exams mein top results dilayegi. Radhe Radhe! ✨`;
+            }
+            fireConfetti();
+        }
+
+        // 5. Unlock Secret Chests
+        function unlockChest(el, content) {
+            if (!el.classList.contains('unlocked')) {
+                el.classList.add('unlocked');
+                el.innerHTML = `<div class="chest-text">${content}</div>`;
+                fireConfetti();
+            }
+        }
+
+        // 6. Interactive Celebration Buttons & Toast
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        function triggerParty() {
+            fireConfetti();
+            showToast('🦚 Radhe Radhe! Happy Children\'s Day Samriti & Snaya! ✨');
+        }
+
+        function claimTreat() {
+            fireConfetti();
+            showToast('🍫 Treat Unlocked! Ab Bhaiya ko screenshot dikhao aur apni chocolate claim karo! 😎');
+        }
+
+        // 7. Confetti Engine
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let pieces = [];
+        const colors = ['#ffd166', '#00f5d4', '#9b5de5', '#f15bb5', '#ffffff'];
+
+        function fireConfetti() {
+            for (let i = 0; i < 75; i++) {
+                pieces.push({
+                    x: Math.random() * canvas.width,
+                    y: -15,
+                    size: Math.random() * 7 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    vy: Math.random() * 3.5 + 2,
+                    vx: Math.random() * 2.4 - 1.2,
+                    rot: Math.random() * 360
+                });
+            }
+        }
+
+        function renderConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            pieces.forEach((p, idx) => {
+                p.y += p.vy;
+                p.x += p.vx;
+                p.rot += 4;
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rot * Math.PI / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                ctx.restore();
+                if (p.y > canvas.height) pieces.splice(idx, 1);
+            });
+            requestAnimationFrame(renderConfetti);
+        }
+        renderConfetti();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
